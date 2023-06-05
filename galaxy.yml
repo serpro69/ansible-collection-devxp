@@ -1,0 +1,28 @@
+---
+namespace: serpro69
+name: workstation
+version: 0.1.0
+readme: README.md
+
+authors:
+  - serpro69
+
+description: Collection for setting up a Linux/Mac dev workstation with Ansible
+
+license: 
+  - MIT
+
+tags: 
+  - dotfiles
+  - workstation
+
+dependencies: 
+  - community.general: ">=3.0.0"
+
+repository: https://github.com/serpro69/ansible-collection-workstation
+documentation: https://github.com/serpro69/ansible-collection-workstation
+homepage: https://github.com/serpro69/ansible-collection-workstation
+issues: https://github.com/serpro69/ansible-collection-workstation/issues
+
+build_ignore: []
+
