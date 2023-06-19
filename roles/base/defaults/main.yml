@@ -1,0 +1,20 @@
+---
+# additional packages to install in addition to default ones (see ../vars/main.yml)
+base_additional_packages:
+  # fonts also "non-free"-fonts
+  - fontconfig
+  - fonts-dejavu
+  - fonts-powerline
+  - ttf-bitstream-vera
+  - ttf-mscorefonts-installer
+  - xfonts-jmk
+
+  # command line clipboard
+  - xsel
+  - xclip
+
+  # TODO this should not be included for non-gnome DEs
+  - network-manager
+  - network-manager-gnome
+  - network-manager-openvpn-gnome
+  - network-manager-openconnect-gnome

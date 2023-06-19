@@ -1,0 +1,20 @@
+---
+- name: Upgrade packages
+  ansible.builtin.apt:
+    upgrade: full
+    update_cache: true
+    autoclean: true
+  become: true
+
+- name: Install packages
+  ansible.builtin.apt:
+    name: "{{ base_default_packages | union(base_additional_packages) | list | unique }}"
+    state: present
+  become: true
+
+- name: Update fonts # noqa no-changed-when
+  ansible.builtin.shell:
+    cmd: |-
+      cp -vr $HOME/.fonts/* /usr/share/fonts/truetype/
+      dpkg-reconfigure fontconfig
+      fc-cache -fv

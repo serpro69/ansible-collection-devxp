@@ -1,0 +1,119 @@
+---
+base_default_packages:
+  # default for many other things
+  - apt-transport-https
+  - build-essential
+  - autoconf
+  - make
+  - cmake
+
+  - ca-certificates
+
+  # web
+  - curl
+  - wget
+  - w3m
+
+  - dos2unix
+  - findutils
+  - coreutils
+
+  - gettext-base
+  - gnupg-agent
+  - jq
+
+  # (un)archive
+  - cabextract
+  - zip
+  - unzip
+  - rar
+  - unrar
+  - tar
+  - pigz
+  - p7zip
+  - p7zip-full
+  - p7zip-rar
+  - unace
+  - bzip2
+  - gzip
+  - xz-utils
+  - advancecomp
+
+  # dev-tools
+  - git
+
+  # editor
+  - vim
+
+  # term multiplexer
+  - tmux
+
+  - python3
+  - python3-pip
+  - python3-gpg
+
+  # read-write NTFS driver for Linux
+  - ntfs-3g
+
+  # do not delete main-system-dirs
+  - safe-rm
+
+  - dialog
+
+  # optimize image-size
+  - gifsicle
+  - optipng
+  - pngcrush
+  - pngnq
+  - pngquant
+  - jpegoptim
+  - jhead
+
+  # utilities
+
+  # fast alternative to dpkg -L and dpkg -S
+  - dlocate
+
+  # quickly find files on the filesystem based on their name
+  - mlocate
+
+  - sysstat
+  - tcpdump
+  - colordiff
+  - moreutils
+  - atop
+  - ack-grep
+  - ngrep
+
+  # interactive processes viewer
+  - htop
+  # mysql processes viewer
+  - mytop
+  # interactive I/O viewer
+  - iotop
+  - tree
+  # disk usage viewer
+  - ncdu
+  - rsync
+  - whois
+  - vim
+  - csstidy
+  - recode
+  - exuberant-ctags
+
+  # GNU bash
+  - bash
+  - bash-completion
+
+  # more colors in the shell
+  - grc
+
+  # trace everything
+  - strace
+
+  # usefull tools
+  - nmap
+  - pv
+  - ucspi-tcp
+  - sqlite3
+  - perl
