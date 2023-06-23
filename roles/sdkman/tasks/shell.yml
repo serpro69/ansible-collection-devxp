@@ -1,0 +1,24 @@
+---
+- name: Ensure .sdkmanshrc
+  ansible.builtin.template:
+    src: "sdkmanshrc.j2"
+    dest: "{{ sdkman_dir }}/.sdkmanshrc"
+    mode: "u=rw,go=r"
+
+- name: Configure .bashrc
+  ansible.builtin.lineinfile:
+    path: "{{ sdkman_bashrc_path }}"
+    state: present
+    regexp: "^source {{ sdkman_dir }}/.sdkmanshrc"
+    line: "source {{ sdkman_dir }}/.sdkmanshrc # THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!"
+    mode: "u=rw,go=r"
+  when: sdkman_bashrc_path | length > 0
+
+- name: Configure .zshrc
+  ansible.builtin.lineinfile:
+    path: "{{ sdkman_zshrc_path }}"
+    state: present
+    regexp: "^source {{ sdkman_dir }}/.sdkmanshrc"
+    line: "source {{ sdkman_dir }}/.sdkmanshrc # THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!"
+    mode: "u=rw,go=r"
+  when: sdkman_zshrc_path | length > 0

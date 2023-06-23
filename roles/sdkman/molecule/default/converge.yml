@@ -1,0 +1,8 @@
+---
+- name: Converge
+  hosts: all
+
+  roles:
+    - role: serpro69.workstation.sdkman
+      vars:
+        sdkman_zshrc_path: ""

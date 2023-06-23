@@ -1,0 +1,26 @@
+---
+- name: Ensure sdkman dependencies
+  ansible.builtin.apt:
+    name:
+      - zip
+      - unzip
+      - curl
+    update_cache: true
+  become: true
+
+- name: Install sdkman # noqa command-instead-of-module
+  ansible.builtin.shell:
+    cmd: curl -s 'https://get.sdkman.io?rcupdate=false' | bash
+    creates: "{{ sdkman_dir }}"
+  environment:
+    SDKMAN_DIR: "{{ sdkman_dir }}"
+
+- name: Update sdkman
+  ansible.builtin.shell:
+    cmd: "source {{ sdkman_dir }}/bin/sdkman-init.sh && sdk selfupdate"
+    executable: /bin/bash
+  register: _sdkman_selfupdate
+  changed_when: _sdkman_selfupdate.stdout != 'No update available at this time.'
+
+- name: Configure .*rc files
+  ansible.builtin.include_tasks: shell.yml

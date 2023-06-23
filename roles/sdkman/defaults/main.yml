@@ -1,0 +1,5 @@
+---
+sdkman_dir: "{{ ansible_env.HOME }}/.sdkman"
+
+sdkman_bashrc_path: "{{ ansible_env.HOME }}/.bashrc"
+sdkman_zshrc_path: "{{ ansible_env.HOME }}/.zshrc"

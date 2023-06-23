@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# {{ ansible_managed }}
+export SDKMAN_DIR={{ sdkman_dir }}
+[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
