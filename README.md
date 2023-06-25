@@ -7,9 +7,20 @@ An ansible collection of roles that I use for setting up my workstations.
 - [`base`](roles/base) - a base role that ensures default system packages
 - [`sdkman`](roles/sdkman) - installs [sdkman](https://sdkman.io/)
 
+_It is worth noting that all roles can be used independently of each other and there are no dependencies between individual roles._
+
 ### Configurable Variables
 
 See each role's individual `defaults/main.yml` file for a list of configurable variables
+
+## Supported OS
+
+This collection currently supports the following operating systems:
+
+- Ubuntu 20.04 (and derivatives)
+- Ubuntu 22.04 (and derivatives)
+
+If a given role has different support that the default mentioned above, this is will be noted in the role's readme file.
 
 ## Development
 
