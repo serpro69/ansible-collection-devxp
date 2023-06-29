@@ -1,0 +1,10 @@
+---
+# additional packages for ansible
+ansible_pip_packages:
+  - ansible-lint
+
+# additional dependencies that are required by some ansible modules
+ansible_pip_dependencies:
+  - jmespath # community.general.json_query
+  - dnspython # community.general.nsupdate
+  - lxml # community.general.xml

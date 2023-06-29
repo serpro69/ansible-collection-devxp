@@ -1,0 +1,12 @@
+---
+- name: Ensure ansible # noqa package-latest
+  ansible.builtin.pip:
+    name: ansible
+    extra_args: --user
+    state: latest
+
+- name: Ensure ansible pip dependencies # noqa package-latest
+  ansible.builtin.pip:
+    name: "{{ ansible_pip_packages | default([]) | union(ansible_pip_dependencies | default([])) | list | unique }}"
+    extra_args: --user
+    state: latest
