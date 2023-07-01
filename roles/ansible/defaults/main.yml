@@ -1,4 +1,8 @@
 ---
+# optional path to an existing virtual environment to install ansible to
+# setting this variable does NOT install virtual environment itself if it doesn't exist
+ansible_virtualenv:
+
 # additional packages for ansible
 ansible_pip_packages:
   - ansible-lint

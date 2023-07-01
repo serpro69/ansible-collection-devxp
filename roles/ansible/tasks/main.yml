@@ -1,12 +1,41 @@
 ---
-- name: Ensure ansible # noqa package-latest
-  ansible.builtin.pip:
-    name: ansible
-    extra_args: --user
-    state: latest
+- name: Install for --user
+  when: not ansible_virtualenv
+  block:
+    - name: Ensure ansible for user # noqa package-latest
+      ansible.builtin.pip:
+        name: ansible
+        extra_args: --user
+        state: latest
 
-- name: Ensure ansible pip dependencies # noqa package-latest
-  ansible.builtin.pip:
-    name: "{{ ansible_pip_packages | default([]) | union(ansible_pip_dependencies | default([])) | list | unique }}"
-    extra_args: --user
-    state: latest
+    - name: Ensure ansible pip dependencies for user # noqa package-latest
+      ansible.builtin.pip:
+        name: "{{ ansible_pip_packages | default([]) | union(ansible_pip_dependencies | default([])) | list | unique }}"
+        extra_args: --user
+        state: latest
+
+- name: Check virtualenv exists
+  ansible.builtin.stat:
+    path: "{{ ansible_virtualenv }}"
+  register: _stat_ansible_virtualenv
+  when:
+    - ansible_virtualenv is string
+    - ansible_virtualenv | length > 0
+
+- name: Install in virtualenv
+  when:
+    - _stat_ansible_virtualenv.stat is defined
+    - _stat_ansible_virtualenv.stat.exists
+    - _stat_ansible_virtualenv.stat.isdir
+  block:
+    - name: Ensure ansible in virtualenv # noqa package-latest
+      ansible.builtin.pip:
+        name: ansible
+        state: latest
+        virtualenv: "{{ ansible_virtualenv }}"
+
+    - name: Ensure ansible pip dependencies in virtualenv # noqa package-latest
+      ansible.builtin.pip:
+        name: "{{ ansible_pip_packages | default([]) | union(ansible_pip_dependencies | default([])) | list | unique }}"
+        state: latest
+        virtualenv: "{{ ansible_virtualenv }}"

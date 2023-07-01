@@ -17,3 +17,14 @@ Run the role using a playbook as follows:
     - role: serpro69.workstation.ansible
     # other roles...
 ```
+
+Install to the 'foo' virtual environment
+
+```yaml
+- name: Configure workstation
+  hosts: localhost
+  roles:
+    - role: serpro69.workstation.ansible
+      vars:
+        ansible_virtualenv: "{{ ansible_env.HOME }}/.virtualenvs/foo"
+```
