@@ -2,6 +2,8 @@
 
 An ansible collection of roles that I use for setting up my workstations.
 
+_NB! This collection is still in early development, and while I do test things and it should mostly work fine, there could be breaking changes between versions until initial stable release_
+
 ## Roles
 
 - [`base`](roles/base) - a base role that ensures default system packages

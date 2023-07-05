@@ -1,6 +1,6 @@
 # `serpro69.workstation.ansible`
 
-This role installs ansible.
+This role installs ansible and some ansible-related packages via pip.
 
 ## Variables
 
@@ -27,4 +27,18 @@ Install to the 'foo' virtual environment
     - role: serpro69.workstation.ansible
       vars:
         ansible_virtualenv: "{{ ansible_env.HOME }}/.virtualenvs/foo"
+```
+
+Choose which additional packages to install:
+
+```yaml
+- name: Configure workstation
+  hosts: localhost
+  roles:
+    - role: serpro69.workstation.ansible
+      vars:
+        ansible_packages:
+          - ansible-lint
+          - yamllint
+        ansible_dependencies: []
 ```

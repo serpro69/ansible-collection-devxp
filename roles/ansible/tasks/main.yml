@@ -8,9 +8,9 @@
         extra_args: --user
         state: latest
 
-    - name: Ensure ansible pip dependencies for user # noqa package-latest
+    - name: Ensure ansible dependencies for user # noqa package-latest
       ansible.builtin.pip:
-        name: "{{ ansible_pip_packages | default([]) | union(ansible_pip_dependencies | default([])) | list | unique }}"
+        name: "{{ ansible_packages | default([]) | union(ansible_dependencies | default([])) | list | unique }}"
         extra_args: --user
         state: latest
 
@@ -34,8 +34,8 @@
         state: latest
         virtualenv: "{{ ansible_virtualenv }}"
 
-    - name: Ensure ansible pip dependencies in virtualenv # noqa package-latest
+    - name: Ensure ansible dependencies in virtualenv # noqa package-latest
       ansible.builtin.pip:
-        name: "{{ ansible_pip_packages | default([]) | union(ansible_pip_dependencies | default([])) | list | unique }}"
+        name: "{{ ansible_packages | default([]) | union(ansible_dependencies | default([])) | list | unique }}"
         state: latest
         virtualenv: "{{ ansible_virtualenv }}"

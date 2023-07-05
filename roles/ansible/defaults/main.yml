@@ -4,11 +4,14 @@
 ansible_virtualenv:
 
 # additional packages for ansible
-ansible_pip_packages:
+ansible_packages:
   - ansible-lint
+  - yamllint
+  - molecule
+  - molecule-docker
 
 # additional dependencies that are required by some ansible modules
-ansible_pip_dependencies:
+ansible_dependencies:
   - jmespath # community.general.json_query
   - dnspython # community.general.nsupdate
   - lxml # community.general.xml
