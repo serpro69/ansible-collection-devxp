@@ -3,6 +3,6 @@
   hosts: all
 
   roles:
+    - role: serpro69.workstation.ansible
+    - role: serpro69.workstation.base
     - role: serpro69.workstation.sdkman
-      vars:
-        sdkman_zshrc_path: ""

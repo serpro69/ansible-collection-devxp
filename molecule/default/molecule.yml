@@ -1,7 +1,7 @@
 ---
 dependency:
   name: shell
-  command: ansible-galaxy collection install --force ../..
+  command: ansible-galaxy collection install --force .
   env:
     ANSIBLE_ROLES_PATH: molecule/galaxy/roles
     ANSIBLE_COLLECTIONS_PATH: molecule/galaxy

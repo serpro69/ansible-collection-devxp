@@ -1,7 +1,7 @@
 ---
 namespace: serpro69
 name: workstation
-version: 0.1.0
+version: 0.1.0 # noqa galaxy[version-incorrect]
 readme: README.md
 
 authors:
@@ -9,14 +9,16 @@ authors:
 
 description: Collection for setting up a Linux/Mac dev workstation with Ansible
 
-license: 
+license:
   - MIT
 
-tags: 
+tags:
   - dotfiles
+  - linux
+  - tools
   - workstation
 
-dependencies: 
+dependencies:
   community.general: ">=3.0.0"
 
 repository: https://github.com/serpro69/ansible-collection-workstation
@@ -25,4 +27,3 @@ homepage: https://github.com/serpro69/ansible-collection-workstation
 issues: https://github.com/serpro69/ansible-collection-workstation/issues
 
 build_ignore: []
-
