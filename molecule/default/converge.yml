@@ -2,7 +2,10 @@
 - name: Converge
   hosts: all
 
+  # TODO include tasks files for each role for better flexibility and readability
+
   roles:
     - role: serpro69.workstation.ansible
     - role: serpro69.workstation.base
+    - role: serpro69.workstation.docker
     - role: serpro69.workstation.sdkman
