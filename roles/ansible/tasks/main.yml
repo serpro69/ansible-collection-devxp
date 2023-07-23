@@ -14,6 +14,14 @@
         extra_args: --user
         state: latest
 
+    - name: Ensure molecule user # noqa package-latest
+      ansible.builtin.pip:
+        name: "{{ ['molecule'] | union(ansible_molecule_plugins | default([])) | list | unique }}"
+        extra_args: --user
+        state: latest
+      when: ansible_install_molecule | bool
+
+
 - name: Check virtualenv exists
   ansible.builtin.stat:
     path: "{{ ansible_virtualenv }}"
@@ -39,3 +47,10 @@
         name: "{{ ansible_packages | default([]) | union(ansible_dependencies | default([])) | list | unique }}"
         state: latest
         virtualenv: "{{ ansible_virtualenv }}"
+
+    - name: Ensure molecule in virtualenv # noqa package-latest
+      ansible.builtin.pip:
+        name: "{{ ['molecule'] | union(ansible_molecule_plugins | default([])) | list | unique }}"
+        state: latest
+        virtualenv: "{{ ansible_virtualenv }}"
+      when: ansible_install_molecule | bool

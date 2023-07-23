@@ -7,11 +7,14 @@ ansible_virtualenv:
 ansible_packages:
   - ansible-lint
   - yamllint
-  - molecule
-  - molecule-docker
 
 # additional dependencies that are required by some ansible modules
 ansible_dependencies:
   - jmespath # community.general.json_query
   - dnspython # community.general.nsupdate
   - lxml # community.general.xml
+
+ansible_install_molecule: true
+ansible_molecule_plugins:
+  - docker
+

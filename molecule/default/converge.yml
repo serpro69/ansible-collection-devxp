@@ -1,11 +1,21 @@
 ---
 - name: Converge
   hosts: all
+  become: true
 
-  # TODO include tasks files for each role for better flexibility and readability
+  tasks:
+    - ansible.builtin.debug: # noqa name[missing]
+        msg: Run tests on {{ ansible_hostname }}
+      tags: always
 
-  roles:
-    - role: serpro69.workstation.ansible
-    - role: serpro69.workstation.base
-    - role: serpro69.workstation.docker
-    - role: serpro69.workstation.sdkman
+- ansible.builtin.import_playbook: plays/ansible.yml
+  tags: ansible
+
+- ansible.builtin.import_playbook: plays/base.yml
+  tags: base
+
+- ansible.builtin.import_playbook: plays/docker.yml
+  tags: docker
+
+- ansible.builtin.import_playbook: plays/sdkman.yml
+  tags: sdkman

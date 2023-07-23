@@ -32,3 +32,13 @@ The following things need to be kept in mind when developing a new role or modif
   - "internal" (private) variables that shouldn't be exposed are additionally prefixed with `_`, e.g. `_sdkman_selfupdate`
 - a role should usually contain molecule directory with tests for self targeting all supported OSes
 
+## Testing
+
+### Requirements
+
+- molecule>=4.0.4
+- [`molecule-plugins[docker]`](https://github.com/ansible-community/molecule-plugins)
+
+To run tests for all roles: `molecule test`
+
+To run tests only for limited roles, tags are used in the converge.yml playbook, therefore tests can be filtered out with: `ANSIBLE_RUN_TAGS='ansible,base' molecule test`
