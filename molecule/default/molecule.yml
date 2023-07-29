@@ -24,6 +24,8 @@ provisioner:
   env:
     ANSIBLE_ROLES_PATH: molecule/galaxy/roles
     ANSIBLE_COLLECTIONS_PATH: molecule/galaxy
+    ANSIBLE_VERBOSITY: 1
+    ANSIBLE_STDOUT_CALLBACK: yaml
 verifier:
   name: ansible
   env:

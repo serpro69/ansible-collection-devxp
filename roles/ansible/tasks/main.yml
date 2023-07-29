@@ -14,9 +14,9 @@
         extra_args: --user
         state: latest
 
-    - name: Ensure molecule user # noqa package-latest
+    - name: Ensure molecule for user # noqa package-latest
       ansible.builtin.pip:
-        name: "{{ ['molecule'] | union(ansible_molecule_plugins | default([])) | list | unique }}"
+        name: "{{ ['molecule'] | union(ansible_molecule_plugins | default([]) | map('regex_replace', '(.+)', 'molecule-plugins[\\1]')) | list | unique }}"
         extra_args: --user
         state: latest
       when: ansible_install_molecule | bool
@@ -50,7 +50,7 @@
 
     - name: Ensure molecule in virtualenv # noqa package-latest
       ansible.builtin.pip:
-        name: "{{ ['molecule'] | union(ansible_molecule_plugins | default([])) | list | unique }}"
+        name: "{{ ['molecule'] | union(ansible_molecule_plugins | default([]) | map('regex_replace', '(.+)', 'molecule-plugins[\\1]')) | list | unique }}"
         state: latest
         virtualenv: "{{ ansible_virtualenv }}"
       when: ansible_install_molecule | bool

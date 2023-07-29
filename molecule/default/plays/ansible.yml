@@ -5,3 +5,6 @@
 
   roles:
     - role: serpro69.workstation.ansible
+      vars:
+        ansible_packages:
+          - yamllint # skip ansible-lint due to it's dependencies making idempotency play fail

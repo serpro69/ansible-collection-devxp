@@ -17,4 +17,3 @@ ansible_dependencies:
 ansible_install_molecule: true
 ansible_molecule_plugins:
   - docker
-
