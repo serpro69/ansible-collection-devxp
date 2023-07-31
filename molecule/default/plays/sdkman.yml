@@ -1,0 +1,7 @@
+---
+- name: Converge sdkman
+  hosts: all
+  become: true
+
+  roles:
+    - role: serpro69.workstation.sdkman
