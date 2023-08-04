@@ -8,14 +8,14 @@
         msg: Run tests on {{ ansible_hostname }}
       tags: always
 
-- ansible.builtin.import_playbook: plays/ansible.yml
+- ansible.builtin.import_playbook: plays/ansible.yml # noqa name[play]
   tags: ansible
 
-- ansible.builtin.import_playbook: plays/base.yml
+- ansible.builtin.import_playbook: plays/base.yml # noqa name[play]
   tags: base
 
-- ansible.builtin.import_playbook: plays/docker.yml
+- ansible.builtin.import_playbook: plays/docker.yml # noqa name[play]
   tags: docker
 
-- ansible.builtin.import_playbook: plays/sdkman.yml
+- ansible.builtin.import_playbook: plays/sdkman.yml # noqa name[play]
   tags: sdkman

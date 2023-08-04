@@ -1,5 +1,5 @@
 ---
-- name: restart docker
+- name: restart docker # noqa name[casing]
   ansible.builtin.service:
     name: docker
     state: "{{ docker_restart_handler_state }}"
