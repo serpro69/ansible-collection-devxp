@@ -5,3 +5,6 @@
 
   roles:
     - role: serpro69.workstation.sdkman
+      vars:
+        sdkman_bashrc_path: ''
+        sdkman_zshrc_path: ''
