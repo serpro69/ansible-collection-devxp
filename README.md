@@ -41,4 +41,4 @@ The following things need to be kept in mind when developing a new role or modif
 
 To run tests for all roles: `molecule test`
 
-To run tests only for limited roles, tags are used in the converge.yml playbook, therefore tests can be filtered out with: `ANSIBLE_RUN_TAGS='ansible,base' molecule test`
+To run tests only for certain roles, tags are used in the `converge.yml` playbook. Tests for given role(s) can be filtered out with: `ANSIBLE_RUN_TAGS='ansible,base' molecule test` or `molecule test -- --tags 'ansible,base'` (requires `molecule-plugins>=23.4.0` due to issue with tags which was fixed in [molecule-plugins/#120](https://github.com/ansible-community/molecule-plugins/pull/120))
