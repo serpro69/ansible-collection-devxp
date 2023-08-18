@@ -1,12 +1,16 @@
-# ansible-collection-workstation
+# ansible-collection-devexp
 
-An ansible collection of roles that I use for setting up my workstations.
+An ansible collection for improved DEVelopment EXPerience. 
+
+This collections contains roles and plugins that I use for setting up my development workstations. You may also want to check out my [ansible-ubuntu-workstation](https://github.com/serpro69/ansible-ubuntu-workstation) playbook that uses this collection for seting up Ubuntu-based workstations.
 
 _NB! This collection is still in early development, and while I do test things and it should mostly work fine, there could be breaking changes between versions until initial stable release_
 
 ## Roles
 
+- [`ansible`](roles/ansible) - installs [ansible](https://docs.ansible.com/ansible/latest/index.html) with some additional ansible-related packages
 - [`base`](roles/base) - a base role that ensures default system packages
+- [`docker`](roles/docker) - installs [docker](https://www.docker.com/)
 - [`sdkman`](roles/sdkman) - installs [sdkman](https://sdkman.io/)
 
 _It is worth noting that all roles can be used independently of each other and there are no dependencies between individual roles._
