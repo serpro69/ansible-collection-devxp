@@ -1,0 +1,23 @@
+---
+# installs https://pypa.github.io/pipx/
+python_install_pipx: true
+
+# installs https://virtualenv.pypa.io/en/latest/
+python_install_virtualenv: true
+
+# installs https://pypi.org/project/virtualenvwrapper/
+python_install_virtualenvwrapper: true
+
+# path to virtualenv
+# change if you are using a non-default path (see https://virtualenvwrapper.readthedocs.io/en/latest/install.html#location-of-environments)
+python_virtualenvwrapper_workon_home: "{{ ansible_env.HOME }}/.virtualenvs"
+
+# optional dict of virtualenvs to create and with optional packages to install
+# must follow the following structure:
+# python_virtualenvs:
+#   - name: foo
+#     packages:
+#       - ansible
+#       - ansible-lint
+#   - name: bar
+python_virtualenvs: {}

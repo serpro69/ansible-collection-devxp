@@ -1,0 +1,30 @@
+---
+- name: Get latest nvm version
+  when: npm_manager_version is "latest"
+  block:
+    - name: Get latest nvm version # noqa command-instead-of-module
+      ansible.builtin.command:
+        cmd: git ls-remote --refs --sort="version:refname" --tags https://github.com/nvm-sh/nvm/ | cut -d/ -f3-|tail -n1
+      register: _nvm_version
+      changed_when: false
+      become: false
+
+    - name: Set nvm version
+      ansible.builtin.set_fact:
+        npm_manager_version: "{{ _nvm_version.stdout }}"
+      become: false
+
+- name: Install nvm
+  ansible.builtin.shell: >-
+    set -o pipefail && \
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/{{ npm_manager_version }}/install.sh | bash
+  args:
+    creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
+  environment:
+    PROFILE: /dev/null
+  become: false
+
+- name: Install npm with {{ npm_version }} # noqa no-changed-when jinja[spacing]
+  ansible.builtin.command:
+    cmd: nvm install {% if npm_version is "lts" -%} --lts {% else -%} {{ npm_version }} {%- endif -%}
+  become: false

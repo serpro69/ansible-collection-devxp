@@ -1,0 +1,16 @@
+---
+- name: Install ansible-language-server
+  when: lsp_ansible | bool
+  block:
+    - name: Get node dir
+      ansible.builtin.command:
+        cmd: dirname $(dirname $(which node))
+      register: _lsp_node_dir
+      changed_when: false
+      become: false
+
+    - name: Install ansible-language-server
+      ansible.builtin.command:
+        cmd: npm install -g @ansible/ansible-language-server
+      creates: "{{ _lsp_node_dir }}/lib/node_modules/@ansible/ansible-language-server"
+      become: false

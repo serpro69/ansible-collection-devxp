@@ -11,6 +11,10 @@ _NB! This collection is still in early development, and while I do test things a
 - [`ansible`](roles/ansible) - installs [ansible](https://docs.ansible.com/ansible/latest/index.html) with some additional ansible-related packages
 - [`base`](roles/base) - a base role that ensures default system packages
 - [`docker`](roles/docker) - installs [docker](https://www.docker.com/)
+- [`lsp`](roles/lsp) - installs various language servers locally
+- [`npm`](roles/npm) - installs [nodejs](https://nodejs.org/en) via [nvm](https://github.com/nvm-sh/nvm) or [nfm](https://github.com/Schniz/fnm)
+- [`nvim`](roles/nvim) - installs [neovim](https://neovim.io/) with [vim-plug](https://github.com/junegunn/vim-plug) and set it as a default alternative for `ex`, `vi`, `vim`, and similar commands
+- [`python`](roles/python) - installs python with some additional packages
 - [`sdkman`](roles/sdkman) - installs [sdkman](https://sdkman.io/)
 
 _It is worth noting that all roles can be used independently of each other and there are no dependencies between individual roles._

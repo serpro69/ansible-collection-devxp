@@ -1,0 +1,9 @@
+---
+# nvm | fnm
+npm_manager: nvm
+
+# also supports release (tags) versions, e.g. v0.39.3
+# only applies to nvm
+npm_manager_version: latest
+
+npm_version: lts

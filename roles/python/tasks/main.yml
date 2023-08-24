@@ -1,0 +1,16 @@
+---
+# TODO not fully implemented
+#
+- name: Create virtualenvs
+  ansible.builtin.shell:
+    cmd: |-
+      mkvirtualenv {{ _virtualenv.name }}
+      workon {{ _virtualenv.name }}
+      {%- if _virtualenv.packages is not empty -%}
+      pip install {{ _virtualenv.packages | join(\" \") }}
+      {%- endif -%}
+      deactivate {{ virtualenv.name }}
+  loop: "{{ python_virtualenvs }}"
+  loop_control:
+    loop_var: _virtualenv
+  creates: "{{ python_virtualenvwrapper_workon_home }}/{{ _virtualenv.name }}"

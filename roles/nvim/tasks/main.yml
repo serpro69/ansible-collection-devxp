@@ -1,0 +1,28 @@
+---
+- name: Install nvim via appimage
+  when: not (nvim_use_flatpak | bool)
+  block:
+    - name: Download nvim appimage
+      ansible.builtin.get_url:
+        url: https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+        dest: /usr/local/bin/nvim.appimage
+        owner: root
+        group: root
+        mode: '0755'
+        force: true
+      become: true
+
+    - name: Update alternatives
+      ansible.builtin.command:
+        cmd: |-
+          sudo update-alternatives --install /usr/bin/ex ex "${CUSTOM_NVIM_PATH}" 110
+          sudo update-alternatives --install /usr/bin/vi vi "${CUSTOM_NVIM_PATH}" 110
+          sudo update-alternatives --install /usr/bin/view view "${CUSTOM_NVIM_PATH}" 110
+          sudo update-alternatives --install /usr/bin/vim vim "${CUSTOM_NVIM_PATH}" 110
+          sudo update-alternatives --install /usr/bin/vimdiff vimdiff "${CUSTOM_NVIM_PATH}" 110
+      environment:
+        CUSTOM_NVIM_PATH: /usr/local/bin/nvim.appimage
+      changed_when: false # TODO can this be improved?
+      become: true
+
+- ansible.builtin.include_tasks: plug.yml # noqa name[missing]

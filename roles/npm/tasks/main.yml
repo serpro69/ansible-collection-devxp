@@ -1,0 +1,6 @@
+---
+- ansible.builtin.include_tasks: nvm.yml # noqa name[missing]
+  when: npm_manager == "nvm"
+
+- ansible.builtin.include_tasks: fnm.yml # noqa name[missing]
+  when: npm_manager == "fnm"

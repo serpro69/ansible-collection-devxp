@@ -1,0 +1,3 @@
+---
+# https://ansible.readthedocs.io/projects/language-server/
+lsp_ansible: true

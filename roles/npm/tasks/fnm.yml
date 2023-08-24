@@ -1,0 +1,13 @@
+---
+- name: Install fnm
+  ansible.builtin.shell: >-
+    set -o pipefail && \
+    curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir "./.fnm" --skip-shell
+  args:
+    creates: "{{ ansible_env.HOME }}/.fnm"
+  become: false
+
+- name: Install npm with {{ npm_version }} # noqa no-changed-when jinja[spacing]
+  ansible.builtin.command:
+    cmd: fnm install {% if npm_version is "lts" -%} --lts {% else -%} {{ npm_version }} {%- endif -%}
+  become: false

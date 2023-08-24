@@ -1,0 +1,7 @@
+---
+- name: Verify npm is available
+  ansible.builtin.command:
+    cmd: npm --version
+  changed_when: false
+  when: (lsp_ansible | bool)
+  become: false
