@@ -18,3 +18,14 @@
       cp -vr $HOME/.fonts/* /usr/share/fonts/truetype/
       dpkg-reconfigure fontconfig
       fc-cache -fv
+
+- name: Update logrotate for {{ item }}
+  ansible.builtin.replace:
+    path: /etc/logrotate.d/{{ item }}
+    regexp: '^(\s+rotate) 12$'
+    replace: '\1 36'
+    backup: true
+  loop:
+    - apt
+    - dpkg
+  become: true
