@@ -1,6 +1,6 @@
 # `serpro69.workstation.base`
 
-This role installs core packages. It should generally be run before any other roles in this collection, but is technically not a dependency for other roles.
+This role installs core packages and configures basic things. It should generally be run first before any other roles in this collection, but strictly is NOT a dependency for other roles.
 
 ## Variables
 

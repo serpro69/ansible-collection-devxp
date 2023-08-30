@@ -1,0 +1,64 @@
+---
+- ansible.builtin.include_tasks: verify.yml # noqa name[missing]
+
+- name: Ensure directories # noqa jinja[spacing]
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{%- if item | regex_search('^/home') -%} {{ ansible_env.USER }} {%- else -%} root {%- endif -%}"
+    group: "{%- if item | regex_search('^/home') -%} {{ ansible_env.USER }} {%- else -%} root {%- endif -%}"
+    mode: "0755"
+  loop:
+    - "{{ gnome_themes_dir }}"
+    - "{{ gnome_icons_dir }}"
+
+- name: Unarchive theme files # noqa jinja[spacing]
+  ansible.builtin.unarchive:
+    src: files/{{ gnome_theme }}.tar.xz
+    dest: "{{ gnome_themes_dir }}"
+    owner: "{%- if item | regex_search('^/home') -%} {{ ansible_env.USER }} {%- else -%} root {%- endif -%}"
+    group: "{%- if item | regex_search('^/home') -%} {{ ansible_env.USER }} {%- else -%} root {%- endif -%}"
+
+- name: Unarchive icon folders files # noqa jinja[spacing]
+  ansible.builtin.unarchive:
+    src: files/Nordic-Folders.tar.xz
+    dest: "{{ gnome_icons_dir }}"
+    owner: "{%- if item | regex_search('^/home') -%} {{ ansible_env.USER }} {%- else -%} root {%- endif -%}"
+    group: "{%- if item | regex_search('^/home') -%} {{ ansible_env.USER }} {%- else -%} root {%- endif -%}"
+  when:
+    - gnome_theme_icon is not empty
+
+- name: Ensure folders theme inherits {{ gnome_theme }} # noqa jinja[spacing]
+  ansible.builtin.lineinfile:
+    dest: # TODO
+    regexp: '^Inherits=.*$'
+    line: 'Inherits={{ gnome_theme }},ubuntu-mono-dark,Mint-X,elementary,gnome,hicolor'
+    owner: "{%- if item | regex_search('^/home') -%} {{ ansible_env.USER }} {%- else -%} root {%- endif -%}"
+    group: "{%- if item | regex_search('^/home') -%} {{ ansible_env.USER }} {%- else -%} root {%- endif -%}"
+  when: gnome_theme_icon is not empty
+
+- name: Unarchive cursor theme files # noqa jinja[spacing]
+  ansible.builtin.unarchive:
+    src: files/{{ gnome_theme_cursor }}.tar.xz
+    dest: "{{ gnome_icons_dir }}"
+    owner: "{%- if item | regex_search('^/home') -%} {{ ansible_env.USER }} {%- else -%} root {%- endif -%}"
+    group: "{%- if item | regex_search('^/home') -%} {{ ansible_env.USER }} {%- else -%} root {%- endif -%}"
+  when: gnome_theme_cursor is not empty
+
+- name: Set gnome desktop interface gtk-theme # noqa no-changed-when
+  ansible.builtin.command:
+    cmd: gsettings set org.gnome.desktop.interface gtk-theme {{ gnome_theme }}-v40
+
+- name: Set gnome desktop wm preferences # noqa no-changed-when
+  ansible.builtin.command:
+    cmd: gsettings set org.gnome.desktop.wm.preferences theme {{ gnome_theme }}-v40
+
+- name: Set gnome desktop interface icon-theme # noqa no-changed-when
+  ansible.builtin.command:
+    cmd: gsettings set org.gnome.desktop.interface icon-theme {{ gnome_theme_icon }}
+  when: gnome_theme_icon is not empty
+
+- name: Set gnome desktop interface cursor-theme # noqa no-changed-when
+  ansible.builtin.command:
+    cmd: gsettings set org.gnome.desktop.interface cursor-theme {{ gnome_theme_cursor }}
+  when: gnome_theme_cursor is not empty
