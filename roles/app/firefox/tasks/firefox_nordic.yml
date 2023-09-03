@@ -1,0 +1,24 @@
+---
+# ref https://github.com/EliverLara/firefox-nordic-theme#manual-installation
+- name: Clone firefox-nordic
+  ansible.builtin.git:
+    repo: https://github.com/EliverLara/firefox-nordic-theme.git
+    dest: "{{ ansible_env.HOME }}/.firefox/{{ base_firefox_profile_path }}/chrome/firefox-nordic-theme"
+    bare: true
+    depth: 1
+
+- name: Create userChrome.css
+  ansible.builtin.blockinfile:
+    path: "{{ ansible_env.HOME }}/.firefox/{{ base_firefox_profile_path }}/chrome/userChrome.css"
+    create: true
+    mode: '0664'
+    owner: # TODO
+    group: # TODO
+    block: |-
+      @import "firefox-nordic-theme\/userChrome.css";
+
+- name: Symlink user.js file
+  ansible.builtin.file:
+    src: "{{ ansible_env.HOME }}/.firefox/{{ base_firefox_profile_path }}/chrome/firefox-nordic-theme/configuration/user.js"
+    path: "{{ ansible_env.HOME }}/.firefox/{{ base_firefox_profile_path }}/user.js"
+    state: link

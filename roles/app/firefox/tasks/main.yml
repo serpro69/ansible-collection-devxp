@@ -1,0 +1,6 @@
+---
+# TODO add installation of firefox
+
+- name: Update firefox theme
+  ansible.builtin.include_tasks: firefox_nordic.yml
+  when: base_firefox_profile_dir
