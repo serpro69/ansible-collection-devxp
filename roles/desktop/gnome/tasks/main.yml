@@ -40,10 +40,11 @@
 - name: Unarchive cursor theme files # noqa jinja[spacing]
   ansible.builtin.unarchive:
     src: files/{{ gnome_theme_cursor }}.tar.xz
-    dest: "{{ gnome_icons_dir }}"
-    owner: "{%- if item | regex_search('^/home') -%} {{ ansible_env.USER }} {%- else -%} root {%- endif -%}"
-    group: "{%- if item | regex_search('^/home') -%} {{ ansible_env.USER }} {%- else -%} root {%- endif -%}"
+    dest: /usr/share/icons # placing this in ~/.local/share/icons does not work for some reason (see https://github.com/EliverLara/Nordic/issues/213)
+    owner: root
+    group: root
   when: gnome_theme_cursor is not empty
+  become: true
 
 - name: Set gnome desktop interface gtk-theme # noqa no-changed-when
   ansible.builtin.command:
