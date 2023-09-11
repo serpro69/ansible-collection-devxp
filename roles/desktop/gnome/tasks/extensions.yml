@@ -1,0 +1,21 @@
+---
+- name: Install browser integration package
+  ansible.builtin.apt:
+    name: >-
+      {#- see installation instructions for ubuntu https://wiki.gnome.org/Projects/GnomeShellIntegration/Installation -#}
+      {%- if ansible_distribution_version is version('23.04', '>=') -%}
+        gnome-browser-connector
+      {%- else -%}
+        chrome-gnome-shell
+      {%- endif -%}
+
+- ansible.builtin.pause: # noqa name[missing]
+    prompt: |-
+      Gnome extensions need to be installed manually. For this, gnome shell browser intergration needs to be configured first.
+      (https://wiki.gnome.org/action/show/Projects/GnomeShellIntegration)
+        1. Install gnome shell integration browser extension
+          1.1 Firefox - https://addons.mozilla.org/en-US/firefox/addon/gnome-shell-integration/
+          1.2 Chrome - https://chrome.google.com/webstore/detail/gnome-shell-integration/gphhapmejobijbbhgpjhcjognlahblep
+        2. Install extensions from https://extensions.gnome.org
+          2.1 User Themes - https://extensions.gnome.org/extension/19/user-themes/
+          2.2 Dash-to-Panel - https://extensions.gnome.org/extension/1160/dash-to-panel/

@@ -20,3 +20,5 @@ gnome_theme_icon_inherits: Pop # TODO change to https://github.com/serpro69/nord
 # set to empty string to keep default cursor theme; allowed values:
 # Nordic-cursors (https://www.gnome-look.org/p/1662218/)
 gnome_theme_cursor: Nordic-cursors
+
+gnome_install_extensions: true

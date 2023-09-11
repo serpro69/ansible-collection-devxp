@@ -10,6 +10,8 @@ _NB! This collection is still in early development, and while I do test things a
 
 - [`ansible`](roles/ansible) - installs [ansible](https://docs.ansible.com/ansible/latest/index.html) with some additional ansible-related packages
 - [`base`](roles/base) - a base role that ensures default system packages
+- [`desktop.gnome`](roles/desktop/gnome) - configures the [Gnome]() Desktop Environment
+  - this role currently does not handle gnome extensions as I haven't found a good way to install most of the extensions I use programmatically
 - [`docker`](roles/docker) - installs [docker](https://www.docker.com/)
 - [`lsp`](roles/lsp) - installs various language servers locally
 - [`npm`](roles/npm) - installs [nodejs](https://nodejs.org/en) via [nvm](https://github.com/nvm-sh/nvm) or [nfm](https://github.com/Schniz/fnm)

@@ -2,6 +2,8 @@
 
 This role configures the [gnome](https://www.gnome.org/) desktop environment with themes, tweaks, extensions and so on.
 
+_NB! This role does not currently handle gnome extensions_
+
 ## Variables
 
 See [`defaults/main.yml`](defaults/main.yml).

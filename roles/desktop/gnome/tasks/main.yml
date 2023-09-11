@@ -63,3 +63,6 @@
   ansible.builtin.command:
     cmd: gsettings set org.gnome.desktop.interface cursor-theme {{ gnome_theme_cursor }}
   when: gnome_theme_cursor is not empty
+
+- ansible.builtin.include_tasks: extensions.yml # noqa name[missing]
+  when: gnome_install_extensions | bool
