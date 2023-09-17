@@ -1,0 +1,23 @@
+---
+- name: Install discord
+  ansible.builtin.apt:
+    deb: "{{ _discord_deb_installer_url }}"
+  become: true
+
+- name: Download better discord
+  ansible.builtin.get_url:
+    url: "{{ _discord_betterdiscord_appimage_url }}"
+    dest: /tmp/
+    force: true
+    mode: '0755'
+    owner: "{{ ansible_env.USER }}"
+    group: "{{ ansible_env.USER }}"
+  become: false
+  when: discord_install_betterdiscord | bool
+
+- name: Pause to manually install better discord
+  ansible.builtin.pause:
+    prompt: |-
+      Please run better discord from /tmp/BetterDiscord-Linux.AppImage before proceeding
+      Press Ctrl+C to abort
+  when: discord_install_betterdiscord | bool
