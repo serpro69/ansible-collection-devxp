@@ -1,0 +1,17 @@
+---
+# application ids for apps to install
+flatpak_application_ids:
+  - com.calibre_ebook.calibre
+  - com.discordapp.Discord
+  - com.vscodium.codium
+  - io.dbeaver.DBeaverCommunity
+  - io.mpv.Mpv
+  - md.obsidian.Obsidian
+  - net.ankiweb.Anki
+  - org.audacityteam.Audacity
+  - org.cryptomator.Cryptomator
+  - org.flameshot.Flameshot
+  - org.keepassxc.KeePassXC
+  - org.qbittorrent.qBittorrent
+  - org.telegram.desktop
+  - org.videolan.VLC
