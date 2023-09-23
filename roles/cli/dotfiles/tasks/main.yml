@@ -1,0 +1,33 @@
+---
+- name: Ensure zsh
+  ansible.builtin.apt:
+    name: zsh
+    state: present
+
+- name: Set zsh as default shell
+  ansible.builtin.pause:
+    prompt: |-
+      Set zsh as default shell with `chsh -s $(which zsh)`
+        - restart user session to apply the change
+        - NB! `chsh` does not work on every system
+
+      Press Ctrl+C to abort.
+      Press any key to continue...
+
+- name: Clone dotfiles
+  git:
+    repo: https://github.com/serpro69/dotfiles.git
+    dest: "{{ ansible_env.HOME }}/dotfiles"
+
+- name: Ensure init.zsh is executable
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/dotfiles/init.zsh"
+    state: file
+    mode: '0755'
+
+- name: Init dotfiles
+  ansible.builtin.shell:
+    cmd: init.zsh
+    chdir: "{{ ansible_env.HOME }}/dotfiles"
+    executable: /usr/bin/zsh
+    creates: "{{ ansible_env.HOME }}/.redpill"
