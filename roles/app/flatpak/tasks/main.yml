@@ -1,5 +1,5 @@
 ---
-- name: Install flatpak
+- name: Ensure flatpak is installed
   ansible.builtin.apt:
     name: flatpak
     state: present

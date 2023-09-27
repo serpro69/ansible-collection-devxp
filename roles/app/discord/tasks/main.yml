@@ -1,7 +1,31 @@
 ---
-- name: Install discord
+- name: Install discord via flatpak
+  when: discord_use_flatpak | bool
+  block:
+    - name: Ensure flatpak is installed
+      ansible.builtin.apt:
+        name: flatpak
+        state: present
+
+    - name: Add flathub remote for user
+      community.general.flatpak_remote:
+        name: flathub
+        state: present
+        method: user
+        enabled: true
+        flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
+
+    - name: Install discord via flatpak
+      community.general.flatpak:
+        name: com.discordapp.Discord
+        state: present
+        method: user
+        remote: flathub
+
+- name: Install discord via .deb
   ansible.builtin.apt:
     deb: "{{ _discord_deb_installer_url }}"
+  when: not discord_use_flatpak | bool
   become: true
 
 - name: Download better discord
