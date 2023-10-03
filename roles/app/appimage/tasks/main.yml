@@ -1,0 +1,25 @@
+---
+- name: Get latest appimagelauncher version # noqa command-instead-of-module
+  ansible.builtin.command:
+    cmd: git ls-remote --refs --sort="version:refname" --tags https://github.com/TheAssassin/AppImageLauncher/ | cut -d/ -f3-|tail -n1
+  register: _appimagelauncher_version
+  changed_when: false
+  become: false
+
+- name: Set appimagelauncher version
+  ansible.builtin.set_fact:
+    appimage_launcher_version: "{{ _appimagelauncher_version }}"
+  become: false
+
+- name: Download appimage launcher
+  ansible.builtin.get_url:
+    url: "{{ _appimagelauncher_download_url }}"
+    dest: /tmp/appimagelauncher-lite-{{ appimage_launcher_version }}.AppImage
+    mode: '0755'
+
+- name: Install AppImageLauncher
+  ansible.builtin.command:
+    cmd: appimagelauncher-lite-{{ appimage_launcher_version }}.AppImage install
+    chdir: /tmp
+    cerates: "{{ ansible_env.HOME }}/.local/lib/appimagelauncher-lite"
+
