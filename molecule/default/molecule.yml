@@ -1,10 +1,10 @@
 ---
 dependency:
   name: shell
-  command: ansible-galaxy collection install --force .
+  command: ansible-galaxy collection install --force . -p molecule/default/galaxy
   env:
-    ANSIBLE_ROLES_PATH: molecule/galaxy/roles
-    ANSIBLE_COLLECTIONS_PATH: molecule/galaxy
+    ANSIBLE_ROLES_PATH: galaxy/roles
+    ANSIBLE_COLLECTIONS_PATH: galaxy
 driver:
   name: docker
 platforms:
@@ -22,12 +22,12 @@ lint: |
 provisioner:
   name: ansible
   env:
-    ANSIBLE_ROLES_PATH: molecule/galaxy/roles
-    ANSIBLE_COLLECTIONS_PATH: molecule/galaxy
+    ANSIBLE_ROLES_PATH: galaxy/roles
+    ANSIBLE_COLLECTIONS_PATH: galaxy
     ANSIBLE_VERBOSITY: 1
     ANSIBLE_STDOUT_CALLBACK: yaml
 verifier:
   name: ansible
   env:
-    ANSIBLE_ROLES_PATH: molecule/galaxy/roles
-    ANSIBLE_COLLECTIONS_PATH: molecule/galaxy
+    ANSIBLE_ROLES_PATH: galaxy/roles
+    ANSIBLE_COLLECTIONS_PATH: galaxy

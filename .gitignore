@@ -1,2 +1,2 @@
 .env
-**/molecule/galaxy/*
+**/molecule/**/galaxy/*
