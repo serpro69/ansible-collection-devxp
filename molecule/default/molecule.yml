@@ -5,6 +5,7 @@ dependency:
   env:
     ANSIBLE_ROLES_PATH: galaxy/roles
     ANSIBLE_COLLECTIONS_PATH: galaxy
+    ANSIBLE_LOG_PATH: molecule.log
 driver:
   name: docker
 platforms:
@@ -26,6 +27,7 @@ provisioner:
     ANSIBLE_COLLECTIONS_PATH: galaxy
     ANSIBLE_VERBOSITY: 1
     ANSIBLE_STDOUT_CALLBACK: yaml
+    ANSIBLE_LOG_PATH: molecule.log
 verifier:
   name: ansible
   env:

@@ -10,8 +10,11 @@
 
 - name: Install sdkman # noqa command-instead-of-module
   ansible.builtin.shell:
-    cmd: curl -s 'https://get.sdkman.io?rcupdate=false' | bash
+    cmd: >-
+      set -o pipefail &&
+      curl -s 'https://get.sdkman.io?rcupdate=false' | bash
     creates: "{{ sdkman_dir }}"
+    executable: /bin/bash
   environment:
     SDKMAN_DIR: "{{ sdkman_dir }}"
 

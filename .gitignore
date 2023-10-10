@@ -1,2 +1,12 @@
+# intellij
+.idea/
+*.iml
+
+# env files
 .env
+
+# galaxy files in molecule tests
 **/molecule/**/galaxy/*
+
+# log files
+*.log
