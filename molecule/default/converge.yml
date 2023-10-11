@@ -1,7 +1,6 @@
 ---
 - name: Converge
   hosts: all
-  become: true
 
   tasks:
     - ansible.builtin.debug: # noqa name[missing]
@@ -10,6 +9,9 @@
 
 - ansible.builtin.import_playbook: plays/ansible.yml # noqa name[play]
   tags: ansible
+
+- ansible.builtin.import_playbook: plays/app.yml # noqa name[play]
+  tags: app
 
 - ansible.builtin.import_playbook: plays/base.yml # noqa name[play]
   tags: base

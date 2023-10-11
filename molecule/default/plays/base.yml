@@ -1,7 +1,6 @@
 ---
 - name: Converge base
   hosts: all
-  become: true
 
   roles:
     - role: serpro69.workstation.base

@@ -11,17 +11,24 @@ driver:
 platforms:
   - name: ubuntu2004
     image: "geerlingguy/docker-ubuntu2004-ansible:latest"
-    privileged: true
-    pre_build_image: true
+    privileged: false
+    pre_build_image: false
   - name: ubuntu2204
     image: "geerlingguy/docker-ubuntu2204-ansible:latest"
-    privileged: true
-    pre_build_image: true
+    privileged: false
+    pre_build_image: false
 lint: |
   set -e
   ansible-lint
 provisioner:
   name: ansible
+  inventory:
+    host_vars:
+      # setting for the platforms' vars
+      ubuntu2004:
+        ansible_user: ansible
+      ubuntu2204:
+        ansible_user: ansible
   env:
     ANSIBLE_ROLES_PATH: galaxy/roles
     ANSIBLE_COLLECTIONS_PATH: galaxy

@@ -1,0 +1,10 @@
+---
+- name: Converge ansible
+  hosts: all
+
+  roles:
+    - role: serpro69.workstation.app.appimage
+    - role: serpro69.workstation.app.discord
+    - role: serpro69.workstation.app.firefox
+    - role: serpro69.workstation.app.flatpak
+    - role: serpro69.workstation.app.jbtoolbox

@@ -33,7 +33,7 @@ This collection currently supports the following operating systems:
 - Ubuntu 20.04 (and derivatives)
 - Ubuntu 22.04 (and derivatives)
 
-If a given role has different support that the default mentioned above, this is will be noted in the role's readme file.
+If a given role has different support than the default mentioned above, this is will be noted in the role's readme file.
 
 ## Development
 

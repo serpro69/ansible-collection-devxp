@@ -1,7 +1,6 @@
 ---
 - name: Converge ansible
   hosts: all
-  become: true
 
   roles:
     - role: serpro69.workstation.ansible
