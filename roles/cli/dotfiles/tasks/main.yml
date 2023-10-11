@@ -18,6 +18,7 @@
   git:
     repo: https://github.com/serpro69/dotfiles.git
     dest: "{{ ansible_env.HOME }}/dotfiles"
+    recursive: true
 
 - name: Ensure init.zsh is executable
   ansible.builtin.file:

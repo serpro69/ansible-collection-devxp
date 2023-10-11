@@ -9,8 +9,9 @@ _NB! This collection is still in early development, and while I do test things a
 ## Roles
 
 - [`ansible`](roles/ansible) - installs [ansible](https://docs.ansible.com/ansible/latest/index.html) with some additional ansible-related packages
-- [`base`](roles/base) - a base role that ensures default system packages
-- [`desktop.gnome`](roles/desktop/gnome) - configures the [Gnome]() Desktop Environment
+- [`base`](roles/base) - a base role that ensures some "default" system packages
+- [`cli.dotfiles`](roles/cli/dotfiles) - sets up *my* dotfiles
+- [`desktop.gnome`](roles/desktop/gnome) - configures the [Gnome](https://www.gnome.org/) Desktop Environment
   - this role currently does not handle gnome extensions as I haven't found a good way to install most of the extensions I use programmatically
 - [`docker`](roles/docker) - installs [docker](https://www.docker.com/)
 - [`lsp`](roles/lsp) - installs various language servers locally
@@ -40,7 +41,7 @@ The following things need to be kept in mind when developing a new role or modif
 
 - all role variables (both `defaults` and `vars`) are prefixed with the role name, e.g. `base_packages`, `sdkman_dir`
   - "internal" (private) variables that shouldn't be exposed are additionally prefixed with `_`, e.g. `_sdkman_selfupdate`
-- a role should usually contain molecule directory with tests for self targeting all supported OSes
+- a role should usually be tested with [molecule](molecule), targeting all supported OSes
 
 ## Testing
 
