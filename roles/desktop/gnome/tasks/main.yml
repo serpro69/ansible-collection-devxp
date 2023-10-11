@@ -9,60 +9,60 @@
     group: "{%- if item | regex_search('^/home') -%} {{ ansible_env.USER }} {%- else -%} root {%- endif -%}"
     mode: "0755"
   loop:
-    - "{{ gnome_themes_dir }}"
-    - "{{ gnome_icons_dir }}"
+    - "{{ desktop_gnome_themes_dir }}"
+    - "{{ desktop_gnome_icons_dir }}"
 
 - name: Unarchive theme files # noqa jinja[spacing]
   ansible.builtin.unarchive:
-    src: files/{{ gnome_theme }}.tar.xz
-    dest: "{{ gnome_themes_dir }}"
+    src: files/{{ desktop_gnome_theme }}.tar.xz
+    dest: "{{ desktop_gnome_themes_dir }}"
     owner: "{%- if item | regex_search('^/home') -%} {{ ansible_env.USER }} {%- else -%} root {%- endif -%}"
     group: "{%- if item | regex_search('^/home') -%} {{ ansible_env.USER }} {%- else -%} root {%- endif -%}"
 
 - name: Unarchive icon folders files # noqa jinja[spacing]
   ansible.builtin.unarchive:
     src: files/Nordic-Folders.tar.xz
-    dest: "{{ gnome_icons_dir }}"
+    dest: "{{ desktop_gnome_icons_dir }}"
     owner: "{%- if item | regex_search('^/home') -%} {{ ansible_env.USER }} {%- else -%} root {%- endif -%}"
     group: "{%- if item | regex_search('^/home') -%} {{ ansible_env.USER }} {%- else -%} root {%- endif -%}"
   when:
-    - gnome_theme_icon is not empty
+    - desktop_gnome_theme_icon is not empty
 
-- name: Ensure folders theme inherits {{ gnome_theme }} # noqa jinja[spacing]
+- name: Ensure folders theme inherits {{ desktop_gnome_theme }} # noqa jinja[spacing]
   ansible.builtin.lineinfile:
     dest: # TODO
     regexp: '^Inherits=.*$'
-    line: 'Inherits={{ gnome_theme }},ubuntu-mono-dark,Mint-X,elementary,gnome,hicolor'
+    line: 'Inherits={{ desktop_gnome_theme }},ubuntu-mono-dark,Mint-X,elementary,gnome,hicolor'
     owner: "{%- if item | regex_search('^/home') -%} {{ ansible_env.USER }} {%- else -%} root {%- endif -%}"
     group: "{%- if item | regex_search('^/home') -%} {{ ansible_env.USER }} {%- else -%} root {%- endif -%}"
-  when: gnome_theme_icon is not empty
+  when: desktop_gnome_theme_icon is not empty
 
 - name: Unarchive cursor theme files # noqa jinja[spacing]
   ansible.builtin.unarchive:
-    src: files/{{ gnome_theme_cursor }}.tar.xz
+    src: files/{{ desktop_gnome_theme_cursor }}.tar.xz
     dest: /usr/share/icons # placing this in ~/.local/share/icons does not work for some reason (see https://github.com/EliverLara/Nordic/issues/213)
     owner: root
     group: root
-  when: gnome_theme_cursor is not empty
+  when: desktop_gnome_theme_cursor is not empty
   become: true
 
 - name: Set gnome desktop interface gtk-theme # noqa no-changed-when
   ansible.builtin.command:
-    cmd: gsettings set org.gnome.desktop.interface gtk-theme {{ gnome_theme }}-v40
+    cmd: gsettings set org.gnome.desktop.interface gtk-theme {{ desktop_gnome_theme }}-v40
 
 - name: Set gnome desktop wm preferences # noqa no-changed-when
   ansible.builtin.command:
-    cmd: gsettings set org.gnome.desktop.wm.preferences theme {{ gnome_theme }}-v40
+    cmd: gsettings set org.gnome.desktop.wm.preferences theme {{ desktop_gnome_theme }}-v40
 
 - name: Set gnome desktop interface icon-theme # noqa no-changed-when
   ansible.builtin.command:
-    cmd: gsettings set org.gnome.desktop.interface icon-theme {{ gnome_theme_icon }}
-  when: gnome_theme_icon is not empty
+    cmd: gsettings set org.gnome.desktop.interface icon-theme {{ desktop_gnome_theme_icon }}
+  when: desktop_gnome_theme_icon is not empty
 
 - name: Set gnome desktop interface cursor-theme # noqa no-changed-when
   ansible.builtin.command:
-    cmd: gsettings set org.gnome.desktop.interface cursor-theme {{ gnome_theme_cursor }}
-  when: gnome_theme_cursor is not empty
+    cmd: gsettings set org.gnome.desktop.interface cursor-theme {{ desktop_gnome_theme_cursor }}
+  when: desktop_gnome_theme_cursor is not empty
 
 - ansible.builtin.include_tasks: extensions.yml # noqa name[missing]
-  when: gnome_install_extensions | bool
+  when: desktop_gnome_install_extensions | bool

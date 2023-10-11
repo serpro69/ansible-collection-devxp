@@ -14,7 +14,7 @@
 
 - name: Install apps via flatpak
   community.general.flatpak:
-    name: "{{ flatpak_application_ids }}"
+    name: "{{ app_flatpak_application_ids }}"
     state: present
     method: user
     remote: flathub

@@ -1,2 +1,2 @@
 ---
-_jbtoolbox_cdn_url: https://download.jetbrains.com/toolbox/jetbrains-toolbox-{{ jbtoolbox_version }}.tar.gz
+_app_jbtoolbox_cdn_url: https://download.jetbrains.com/toolbox/jetbrains-toolbox-{{ app_jbtoolbox_version }}.tar.gz

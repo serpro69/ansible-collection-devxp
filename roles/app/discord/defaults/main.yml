@@ -1,9 +1,9 @@
 ---
 # if false, a discord will be installed using a .deb file instead
-discord_use_flatpak: true
+app_discord_use_flatpak: true
 
 # must be specified if installing with .deb file
-discord_version: 0.0.28
+app_discord_version: 0.0.28
 
 # additionally installs https://betterdiscord.app/
-discord_install_betterdiscord: true
+app_discord_install_betterdiscord: true

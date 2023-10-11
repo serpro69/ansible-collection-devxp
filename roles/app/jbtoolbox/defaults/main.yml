@@ -1,3 +1,5 @@
 ---
 # https://www.jetbrains.com/toolbox-app/download/download-thanks.html?platform=linux
-jbtoolbox_version: 1.28.1.15219
+app_jbtoolbox_version: 1.28.1.15219
+
+app_appimage_applications_path: "{{ ansible_env.HOME }}/Applications"

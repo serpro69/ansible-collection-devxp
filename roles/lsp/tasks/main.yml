@@ -12,5 +12,5 @@
     - name: Install ansible-language-server
       ansible.builtin.command:
         cmd: npm install -g @ansible/ansible-language-server
-      creates: "{{ _lsp_node_dir }}/lib/node_modules/@ansible/ansible-language-server"
+        creates: "{{ _lsp_node_dir }}/lib/node_modules/@ansible/ansible-language-server"
       become: false

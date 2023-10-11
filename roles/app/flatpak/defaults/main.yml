@@ -1,6 +1,6 @@
 ---
 # application ids for apps to install
-flatpak_application_ids:
+app_flatpak_application_ids:
   - com.calibre_ebook.calibre
   - com.discordapp.Discord
   - com.vscodium.codium

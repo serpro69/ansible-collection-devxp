@@ -1,7 +1,7 @@
 ---
 - name: Ensure ~/Applications dir
   ansible.builtin.file:
-    path: "{{ ansible_env.HOME }}/Applications"
+    path: "{{ app_appimage_applications_path }}"
     state: directory
     mode: '0755'
     owner: "{{ ansible_env.USER }}"
@@ -9,8 +9,8 @@
 
 - name: Unarchive jetbrains toolbox
   ansible.builtin.unarchive:
-    src: "{{ _jbtoolbox_cdn_url }}"
-    dest: "{{ ansible_env.HOME }}/Applications"
+    src: "{{ _app_jbtoolbox_cdn_url }}"
+    dest: "{{ app_appimage_applications_path }}"
     mode: '0755'
     owner: "{{ ansible_env.USER }}"
     group: "{{ ansible_env.USER }}"
@@ -20,7 +20,7 @@
 
 - name: Ensure file permissions
   ansible.builtin.file:
-    path: "{{ ansible_env.HOME }}/Applications/jetbrains-toolbox"
+    path: "{{ app_appimage_applications_path }}/jetbrains-toolbox"
     state: file
     mode: '0755'
     owner: "{{ ansible_env.USER }}"

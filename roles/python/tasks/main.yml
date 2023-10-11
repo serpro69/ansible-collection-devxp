@@ -10,7 +10,7 @@
       pip install {{ _virtualenv.packages | join(\" \") }}
       {%- endif -%}
       deactivate {{ virtualenv.name }}
+    creates: "{{ python_virtualenvwrapper_workon_home }}/{{ _virtualenv.name }}"
   loop: "{{ python_virtualenvs }}"
   loop_control:
     loop_var: _virtualenv
-  creates: "{{ python_virtualenvwrapper_workon_home }}/{{ _virtualenv.name }}"

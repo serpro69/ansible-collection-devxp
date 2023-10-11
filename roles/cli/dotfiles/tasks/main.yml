@@ -14,8 +14,8 @@
       Press Ctrl+C to abort.
       Press any key to continue...
 
-- name: Clone dotfiles
-  git:
+- name: Clone dotfiles # noqa latest[git]
+  ansible.builtin.git:
     repo: https://github.com/serpro69/dotfiles.git
     dest: "{{ ansible_env.HOME }}/dotfiles"
     recursive: true

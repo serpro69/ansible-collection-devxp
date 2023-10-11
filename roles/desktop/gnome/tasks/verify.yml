@@ -1,15 +1,15 @@
 ---
 - name: Verify theme name is valid
   ansible.builtin.assert:
-    that: gnome_theme is 'Nordic' or
-      gnome_theme is 'Nordic-darker' or
-      gnome_theme is 'Nordic-Polar'
+    that: desktop_gnome_theme is 'Nordic' or
+      desktop_gnome_theme is 'Nordic-darker' or
+      desktop_gnome_theme is 'Nordic-Polar'
 
 - name: Verify theme icons name is valid
   ansible.builtin.assert:
-    that: gnome_theme_icons is 'Nordic' or
-      gnome_theme_icons is 'Nordic-Darker'
+    that: desktop_gnome_theme_icons is 'Nordic' or
+      desktop_gnome_theme_icons is 'Nordic-Darker'
 
 - name: Verify theme cursor name is valid
   ansible.builtin.assert:
-    that: gnome_theme_cursor is 'Nordic-cursors'
+    that: desktop_gnome_theme_cursor is 'Nordic-cursors'

@@ -1,3 +1,4 @@
 ---
 # set directory name to update firefox stuff like themes, extensions, etc
-base_firefox_profile_dir: ''
+app_firefox_profile_dir: ''
+app_firefox_profile_path: "{{ ansible_env.HOME }}/.firefox/{{ app_firefox_profile_dir }}"

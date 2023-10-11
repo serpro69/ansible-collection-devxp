@@ -1,24 +1,24 @@
 ---
 # NB! to use themes with apps that require sudo , it is necessary to install the themes in /usr/share/themes/ directory
-gnome_themes_dir: "{{ ansible_env.HOME }}/.themes"
-gnome_icons_dir: "{{ ansible_env.HOME }}/.local/share/icons"
+desktop_gnome_themes_dir: "{{ ansible_env.HOME }}/.themes"
+desktop_gnome_icons_dir: "{{ ansible_env.HOME }}/.local/share/icons"
 
 # theme to use; allowed values:
 # Nordic | Nordic-darker | Nordic-Polar (https://www.gnome-look.org/p/1267246)
-gnome_theme: Nordic-darker
+desktop_gnome_theme: Nordic-darker
 
 # use themed folders icons (if available for the selected theme)
 # set to empty string to keep default folders icons; allowed values:
 # Nordic | Nordic-Darker - additional folder icons for Nordic theme (https://www.gnome-look.org/p/1267246)
-gnome_theme_icon: Nordic-Darker
+desktop_gnome_theme_icon: Nordic-Darker
 
 # icon theme to inherit
-# used in combination with gnome_theme_icon variable
-gnome_theme_icon_inherits: Pop # TODO change to https://github.com/serpro69/nord-icons
+# used in combination with desktop_gnome_theme_icon variable
+desktop_gnome_theme_icon_inherits: Pop # TODO change to https://github.com/serpro69/nord-icons
 
 # cursor theme to use
 # set to empty string to keep default cursor theme; allowed values:
 # Nordic-cursors (https://www.gnome-look.org/p/1662218/)
-gnome_theme_cursor: Nordic-cursors
+desktop_gnome_theme_cursor: Nordic-cursors
 
-gnome_install_extensions: true
+desktop_gnome_install_extensions: true
