@@ -1,7 +1,12 @@
 ---
 dependency:
   name: shell
-  command: ansible-galaxy collection install --force . -p molecule/default/galaxy
+  command: |
+
+    #!/usr/bin/env bash
+    set -e
+    ansible-galaxy collection install --force . -p molecule/default/galaxy
+    ansible-lint
   env:
     ANSIBLE_ROLES_PATH: galaxy/roles
     ANSIBLE_COLLECTIONS_PATH: galaxy
@@ -17,9 +22,6 @@ platforms:
     image: "geerlingguy/docker-ubuntu2204-ansible:latest"
     privileged: false
     pre_build_image: false
-lint: |
-  set -e
-  ansible-lint
 provisioner:
   name: ansible
   inventory:
