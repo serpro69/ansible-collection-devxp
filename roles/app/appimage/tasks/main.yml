@@ -8,15 +8,18 @@
   become: true
 
 - name: Get latest appimagelauncher version # noqa command-instead-of-module
-  ansible.builtin.command:
-    cmd: git ls-remote --refs --sort="version:refname" --tags https://github.com/TheAssassin/AppImageLauncher/ | cut -d/ -f3-|tail -n1
+  ansible.builtin.shell:
+    cmd: >-
+      set -o pipefail &&
+      git ls-remote --refs --sort=version:refname --tags https://github.com/TheAssassin/AppImageLauncher/ | cut -d/ -f3- | tail -n1
+    executable: /usr/bin/bash
   register: _app_appimage_launcher_version
   changed_when: false
   become: false
 
 - name: Set appimagelauncher version
   ansible.builtin.set_fact:
-    app_appimage_launcher_version: "{{ _app_appimage_launcher_version }}"
+    app_appimage_launcher_version: "{{ _app_appimage_launcher_version.stdout }}"
   become: false
 
 - name: Download appimage launcher
