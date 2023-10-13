@@ -10,6 +10,7 @@
 - name: Unarchive jetbrains toolbox
   ansible.builtin.unarchive:
     src: "{{ _app_jbtoolbox_cdn_url }}"
+    remote_src: true
     dest: "{{ app_appimage_applications_path }}"
     mode: '0755'
     owner: "{{ ansible_env.ANSIBLE_USER }}"
