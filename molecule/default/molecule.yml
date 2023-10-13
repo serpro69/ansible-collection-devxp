@@ -16,11 +16,17 @@ driver:
 platforms:
   - name: ubuntu2004
     image: "geerlingguy/docker-ubuntu2004-ansible:latest"
-    privileged: false
+    # fix for app.flatpak (see https://github.com/flatpak/flatpak/issues/3027)
+    # see also https://discourse.flathub.org/t/error-running-flatpack-in-dockerfile/1636/4
+    # and https://github.com/ansible-community/molecule-docker/issues/17
+    # TODO not ideal, might want to explore limiting this to certain capabilities and security_opts instead
+    privileged: true
+    # capabilities:
+      # - SYS_ADMIN
     pre_build_image: false
   - name: ubuntu2204
     image: "geerlingguy/docker-ubuntu2204-ansible:latest"
-    privileged: false
+    privileged: true
     pre_build_image: false
 provisioner:
   name: ansible

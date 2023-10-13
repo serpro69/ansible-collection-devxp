@@ -13,6 +13,10 @@ app_flatpak_application_ids:
   - org.cryptomator.Cryptomator
   - org.flameshot.Flameshot
   - org.keepassxc.KeePassXC
+  - org.libreoffice.LibreOffice
   - org.qbittorrent.qBittorrent
   - org.telegram.desktop
   - org.videolan.VLC
+
+# user | system
+app_flatpak_install_method: user
