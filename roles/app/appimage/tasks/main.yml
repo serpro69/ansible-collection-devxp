@@ -1,37 +1,26 @@
 ---
-- name: Ensure git is installed
-  ansible.builtin.apt:
-    name: git
-    state: present
-    update_cache: true
-    autoclean: true
-  become: true
-
-- name: Get latest appimagelauncher version # noqa command-instead-of-module
-  ansible.builtin.shell:
-    cmd: >-
-      set -o pipefail &&
-      git ls-remote --refs --sort=version:refname --tags https://github.com/TheAssassin/AppImageLauncher/ | cut -d/ -f3- | tail -n1
-    executable: /usr/bin/bash
-  register: _app_appimage_launcher_version
+- name: Get appimagelauncher releases
+  ansible.builtin.uri:
+    url: https://api.github.com/repos/TheAssassin/AppImageLauncher/releases/latest
+  register: _app_appimage_launcher_releases
   changed_when: false
-  become: false
+  no_log: true
 
-- name: Set appimagelauncher version
+- name: Get appimagelauncher-lite release for x86_64
   ansible.builtin.set_fact:
-    app_appimage_launcher_version: "{{ _app_appimage_launcher_version.stdout }}"
-  become: false
+    app_appimage_launcher_release: "{{ _app_appimage_launcher_releases.json | to_json | from_json | community.general.json_query(query) | first }}"
+  vars:
+    query: "assets[?contains(name, 'lite') && ends_with(name, 'x86_64.AppImage')]"
 
 - name: Download appimage launcher
   ansible.builtin.get_url:
-    url: "{{ _app_appimage_launcher_download_url }}"
-    dest: /tmp/appimagelauncher-lite-{{ app_appimage_launcher_version }}.AppImage
+    url: "{{ app_appimage_launcher_release.browser_download_url }}"
+    dest: /tmp/{{ app_appimage_launcher_release.name }}
     mode: '0755'
-  become: false
 
-- name: Install AppImageLauncher
-  ansible.builtin.command:
-    cmd: appimagelauncher-lite-{{ app_appimage_launcher_version }}.AppImage install
+- name: Install AppImageLauncher # noqa command-instead-of-shell
+  ansible.builtin.shell:
+    cmd: "./{{ app_appimage_launcher_release.name }} install"
     chdir: /tmp
+    executable: /usr/bin/bash
     creates: "{{ ansible_env.HOME }}/.local/lib/appimagelauncher-lite"
-  become: false

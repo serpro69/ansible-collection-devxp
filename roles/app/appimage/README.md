@@ -2,6 +2,10 @@
 
 This role configures AppImage integration and installs some apps.
 
+## Requirements
+
+- jmespath (needed for [`community.general.json_query`](https://docs.ansible.com/ansible/latest/collections/community/general/json_query_filter.html#requirements) filter
+
 ## Variables
 
 See [`defaults/main.yml`](defaults/main.yml).
