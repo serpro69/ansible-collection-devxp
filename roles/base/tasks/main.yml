@@ -19,7 +19,7 @@
       dpkg-reconfigure fontconfig
       fc-cache -fv
 
-- name: Update logrotate for {{ item }}
+- name: Update logrotate
   ansible.builtin.replace:
     path: /etc/logrotate.d/{{ item }}
     regexp: '^(\s+rotate) 12$'
