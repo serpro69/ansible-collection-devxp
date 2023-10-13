@@ -1,5 +1,6 @@
 ---
 # if false, a discord will be installed using a .deb file instead
+# NB! this will install discord via flatpak only for user, not system
 app_discord_use_flatpak: true
 
 # must be specified if installing with .deb file

@@ -1,26 +1,11 @@
 ---
 - name: Install discord via flatpak
   when: app_discord_use_flatpak | bool
-  block:
-    - name: Ensure flatpak is installed
-      ansible.builtin.apt:
-        name: flatpak
-        state: present
-
-    - name: Add flathub remote for user
-      community.general.flatpak_remote:
-        name: flathub
-        state: present
-        method: user
-        enabled: true
-        flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
-
-    - name: Install discord via flatpak
-      community.general.flatpak:
-        name: com.discordapp.Discord
-        state: present
-        method: user
-        remote: flathub
+  ansible.builtin.include_role:
+    name: serpro69.workstation.app.flatpak
+  vars:
+    app_flatpak_application_ids: # noqa var-naming[no-role-prefix]
+      - com.discordapp.Discord
 
 - name: Install discord via .deb
   ansible.builtin.apt:
