@@ -2,4 +2,5 @@
 # https://www.jetbrains.com/toolbox-app/download/download-thanks.html?platform=linux
 app_jbtoolbox_version: 1.28.1.15219
 
+# toolbox is installed via appimage, hence we need a path where all appimages are located
 app_appimage_applications_path: "{{ ansible_env.HOME }}/Applications"

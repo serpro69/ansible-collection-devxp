@@ -5,8 +5,8 @@
   ansible.builtin.file:
     path: "{{ item }}"
     state: directory
-    owner: "{%- if item | regex_search('^/home') -%} {{ ansible_env.USER }} {%- else -%} root {%- endif -%}"
-    group: "{%- if item | regex_search('^/home') -%} {{ ansible_env.USER }} {%- else -%} root {%- endif -%}"
+    owner: "{%- if item | regex_search('^/home') -%} {{ ansible_env.ANSIBLE_USER }} {%- else -%} root {%- endif -%}"
+    group: "{%- if item | regex_search('^/home') -%} {{ ansible_env.ANSIBLE_USER }} {%- else -%} root {%- endif -%}"
     mode: "0755"
   loop:
     - "{{ desktop_gnome_themes_dir }}"
@@ -16,15 +16,15 @@
   ansible.builtin.unarchive:
     src: files/{{ desktop_gnome_theme }}.tar.xz
     dest: "{{ desktop_gnome_themes_dir }}"
-    owner: "{%- if item | regex_search('^/home') -%} {{ ansible_env.USER }} {%- else -%} root {%- endif -%}"
-    group: "{%- if item | regex_search('^/home') -%} {{ ansible_env.USER }} {%- else -%} root {%- endif -%}"
+    owner: "{%- if item | regex_search('^/home') -%} {{ ansible_env.ANSIBLE_USER }} {%- else -%} root {%- endif -%}"
+    group: "{%- if item | regex_search('^/home') -%} {{ ansible_env.ANSIBLE_USER }} {%- else -%} root {%- endif -%}"
 
 - name: Unarchive icon folders files # noqa jinja[spacing]
   ansible.builtin.unarchive:
     src: files/Nordic-Folders.tar.xz
     dest: "{{ desktop_gnome_icons_dir }}"
-    owner: "{%- if item | regex_search('^/home') -%} {{ ansible_env.USER }} {%- else -%} root {%- endif -%}"
-    group: "{%- if item | regex_search('^/home') -%} {{ ansible_env.USER }} {%- else -%} root {%- endif -%}"
+    owner: "{%- if item | regex_search('^/home') -%} {{ ansible_env.ANSIBLE_USER }} {%- else -%} root {%- endif -%}"
+    group: "{%- if item | regex_search('^/home') -%} {{ ansible_env.ANSIBLE_USER }} {%- else -%} root {%- endif -%}"
   when:
     - desktop_gnome_theme_icon is not empty
 
@@ -33,8 +33,8 @@
     dest: # TODO
     regexp: '^Inherits=.*$'
     line: 'Inherits={{ desktop_gnome_theme }},ubuntu-mono-dark,Mint-X,elementary,gnome,hicolor'
-    owner: "{%- if item | regex_search('^/home') -%} {{ ansible_env.USER }} {%- else -%} root {%- endif -%}"
-    group: "{%- if item | regex_search('^/home') -%} {{ ansible_env.USER }} {%- else -%} root {%- endif -%}"
+    owner: "{%- if item | regex_search('^/home') -%} {{ ansible_env.ANSIBLE_USER }} {%- else -%} root {%- endif -%}"
+    group: "{%- if item | regex_search('^/home') -%} {{ ansible_env.ANSIBLE_USER }} {%- else -%} root {%- endif -%}"
   when: desktop_gnome_theme_icon is not empty
 
 - name: Unarchive cursor theme files # noqa jinja[spacing]

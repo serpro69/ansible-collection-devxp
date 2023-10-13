@@ -12,8 +12,8 @@
     path: "{{ app_firefox_profile_path }}/chrome/userChrome.css"
     create: true
     mode: '0664'
-    owner: "{{ ansible_env.USER }}"
-    group: "{{ ansible_env.USER }}"
+    owner: "{{ ansible_env.ANSIBLE_USER }}"
+    group: "{{ ansible_env.ANSIBLE_USER }}"
     block: |-
       @import "firefox-nordic-theme\/userChrome.css";
 
