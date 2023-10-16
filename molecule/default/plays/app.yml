@@ -6,10 +6,23 @@
     # - role: serpro69.workstation.app.appimage # can't run via docker due to dbus issues
     - role: serpro69.workstation.app.discord
       vars:
+        app_discord_use_flatpak: true # noqa var-naming[no-role-prefix]
         app_discord_install_betterdiscord: false # noqa var-naming[no-role-prefix]
+      environment:
+        FLATPAK_SYSTEM_HELPER_ON_SESSION: foo # fix https://github.com/flatpak/flatpak/issues/5076
+
+    - role: serpro69.workstation.app.discord
+      vars:
+        app_discord_use_flatpak: false # noqa var-naming[no-role-prefix]
+        app_discord_install_betterdiscord: false # noqa var-naming[no-role-prefix]
+
     - role: serpro69.workstation.app.firefox
+
     - role: serpro69.workstation.app.flatpak
       vars:
         app_flatpak_application_ids: # noqa var-naming[no-role-prefix]
           - com.calibre_ebook.calibre
+      environment:
+        FLATPAK_SYSTEM_HELPER_ON_SESSION: foo # fix https://github.com/flatpak/flatpak/issues/5076
+
     - role: serpro69.workstation.app.jbtoolbox
