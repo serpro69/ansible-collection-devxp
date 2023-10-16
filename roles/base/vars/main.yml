@@ -117,3 +117,7 @@ base_default_packages:
   - ucspi-tcp
   - sqlite3
   - perl
+
+  # system notifications
+  - at
+  - libnotify-bin
