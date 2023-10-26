@@ -20,3 +20,32 @@
     state: present
     method: "{{ app_flatpak_install_method }}"
     remote: flathub
+
+- name: Set flatpak dir fact
+  ansible.builtin.set_fact:
+    _app_flatpak_path: >-
+      {%- if app_flatpak_install_method == 'user' -%}
+        {{ ansible_env_HOME }}/.local/share/flatpak'
+      {%- else -%}
+        /var/lib/flatpak
+      {%- endif -%}
+
+- name: Ensure overrides dir
+  ansible.builtin.file:
+    path: "{{ _app_flatpak_path }}/overrides"
+    state: directory
+    mode: '0755'
+    owner: "{{ ansible_env.ANSIBLE_USER }}"
+    group: "{{ ansible_env.ANSIBLE_USER }}"
+  become: "{{ app_flatpak_install_method is not 'user' }}"
+
+- name: Copy overrides configs for apps
+  ansible.builtin.copy:
+    src: files/overrides/{{ item }}
+    dest: "{{ _app_flatpak_path }}/overrides/"
+    mode: '0664'
+    owner: "{{ ansible_env.ANSIBLE_USER }}"
+    group: "{{ ansible_env.ANSIBLE_USER }}"
+  loop:
+    - io.dbeaver.DBeaverCommunity
+  become: "{{ app_flatpak_install_method is not 'user' }}"
