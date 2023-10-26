@@ -1,9 +1,9 @@
 [Context]
-filesystems=~/.vrapperrc;~/.themes/;~/Projects/cegal/;~/.var/app/io.dbeaver.DBeaverCommunity/;~/.local/share/flatpak/app/io.dbeaver.DBeaverCommunity/;~/.local/share/DBeaverData/;~/.eclipse;!host;!home;
+filesystems=~/.vrapperrc;~/.themes;~/Projects/cegal;~/.var/app/io.dbeaver.DBeaverCommunity;~/.local/share/flatpak/app/io.dbeaver.DBeaverCommunity;~/.local/share/DBeaverData;~/.eclipse;!host;!home;
 
 [Environment]
 FLATPAK_ISOLATE_PACKAGES=0
-PATH=/home/sergio/.asdf/shims:/home/sergio/.asdf/bin:/home/sergio/.cargo/bin:/home/sergio/.local/bin:/home/sergio/bin:/app/bin:/usr/bin:/app/jre/bin:~/.eclipse/org.jkiss.dbeaver.product_23.2.2_74081716_linux_gtk_x86_64
+PATH=/home/sergio/.asdf/shims:/home/sergio/.asdf/bin:/home/sergio/.cargo/bin:/home/sergio/.local/bin:/home/sergio/bin:/app/bin:/usr/bin:/app/jre/bin
 
 [Session Bus Policy]
 org.freedesktop.Flatpak=none
