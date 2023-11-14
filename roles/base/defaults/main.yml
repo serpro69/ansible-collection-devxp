@@ -9,6 +9,9 @@ base_additional_packages:
   - ttf-mscorefonts-installer
   - xfonts-jmk
 
+  # av encoding
+  - ffmpeg
+
   # command line clipboard
   - xsel
   - xclip
