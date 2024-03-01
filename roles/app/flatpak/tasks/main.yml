@@ -49,3 +49,6 @@
   loop:
     - io.dbeaver.DBeaverCommunity
   become: "{%- if app_flatpak_install_method == 'user' -%} true {%- else -%} false {%- endif -%}"
+
+- ansible.builtin.include_tasks:
+  name: manual_config.yml

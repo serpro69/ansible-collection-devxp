@@ -1,0 +1,17 @@
+---
+- name: Configure qbittorrent
+  ansible.builtin.pause:
+    prompt: >-
+      To configure custom theme
+        - Open qbittorrent client
+        - Go-to Tools -> Preferences (Alt + O)
+        - Under Behavior -> Interface
+          - Check "Use custom UI theme" and provide path to the theme file
+          - Check "Use icons from system theme"
+          - Apply and restart
+        - NB! If using nord theme and it's not applied properly, try applying dracula first, and then nord.
+          - Restart app after every theme change
+
+      Press <Enter> key to continue.
+      Press <Ctrl+C> to abort
+  when: '"qbittorrent" in app_flatpak_application_ids'
