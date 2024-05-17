@@ -5,6 +5,7 @@ app_flatpak_application_ids:
   - com.discordapp.Discord
   - com.vscodium.codium
   - io.dbeaver.DBeaverCommunity
+  - io.github.seadve.Kooha
   - io.mpv.Mpv
   - md.obsidian.Obsidian
   - net.ankiweb.Anki
