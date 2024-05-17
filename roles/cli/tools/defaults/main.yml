@@ -1,0 +1,2 @@
+---
+cli_tools_zsh_completions_dir: '{{ ansible.USER_HOME }}/.redpill/completions'
