@@ -59,3 +59,9 @@ To run tests only for certain roles, tags are used in the `converge.yml` playboo
 - [ ] Helper role for downloading binaries from github - [helper/github/install_binary](helper/github/install_binary)
 - [ ] CLI tools via [roles/cli/tools](roles/cli/tools) role
   - bat, exa, delta, ripgrep, ...
+  - terraform
+  - pulumi
+    + zsh completions
+  - mongocli, atlas
+    + zsh completions
+  - [ollama](https://github.com/ollama/ollama/blob/main/docs/linux.md#manual-install)
