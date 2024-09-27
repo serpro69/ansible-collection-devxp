@@ -21,7 +21,6 @@
         state: latest
       when: ansible_install_molecule | bool
 
-
 - name: Check virtualenv exists
   ansible.builtin.stat:
     path: "{{ ansible_virtualenv }}"
